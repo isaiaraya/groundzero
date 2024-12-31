@@ -1,0 +1,55 @@
+{% extends 'groundzero/base.html' %}
+
+{% block title %}Artistas{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="card-group">
+
+    <div class="card">
+        <img class="card-img-top" src="{% static 'IMG/a1.jpg' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Coipu</h5>
+            <p class="card-text">Artista Chileno proveniente de Concepcion</p>
+        </div>
+        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Coipu"
+            data-bs-content="Nombre real: Desconocido.
+                                     Estilo: Artista de street art y grafiti.
+                                     Conocido por: Su enfoque en retratar la vida urbana a través de personajes animales y humanos en entornos urbanos.">Historia
+        </button>
+
+    </div>
+
+    <div class="card">
+        <img class="card-img-top" src="{% static 'IMG/a2.jpg' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Gerhard Richter</h5>
+            <p class="card-text">Artista Aleman</p>
+        </div>
+        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Gerard Richter"
+            data-bs-content="Nacionalidad: Alemán.
+                    Estilo: Pintura contemporánea.
+                    Destacado por: Su versatilidad, desde pinturas abstractas hasta retratos fotográficamente realistas.
+                    Reconocimientos: Premio Praemium Imperiale en Pintura (1997), Premio Wolf en las Artes (2017).">Historia
+        </button>
+    </div>
+
+    <div class="card">
+        <img class="card-img-top" src="{% static 'IMG/a3.jpg' %}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Yan Pei Ming</h5>
+            <p class="card-text">Artista Chino residente en Francia</p>
+        </div>
+        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Yan Pei Ming"
+            data-bs-content="Nacionalidad: Francés, nacido en China.
+                    Estilo: Pintura figurativa.
+                    Temas: Retratos expresionistas, a menudo de figuras históricas o políticas.
+                    Influencias: Rembrandt y Velázquez.">Historia
+        </button>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css '%}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <style>
+        /* Estilos para la animación de carga */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            /* Fondo blanco */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            /* Asegura que la capa de carga esté por encima de todo */
+        }
+
+
+
+
+        .loading-bar {
+            width: 100%;
+            max-width: 300px;
+            /* Ancho máximo de la barra de carga */
+            height: 10px;
+            /* Altura de la barra de carga */
+            background-color: #ccc;
+            /* Color de fondo de la barra de carga */
+            margin-top: 20px;
+            /* Margen superior */
+            border-radius: 5px;
+            /* Borde redondeado */
+            overflow: hidden;
+            /* Oculta el desbordamiento */
+        }
+
+        .loading-progress {
+            width: 0;
+            /* Inicialmente, sin progreso */
+            height: 100%;
+            /* Altura completa */
+            background-color: #000;
+            /* Color de la barra de carga */
+            transition: width 1s ease-in-out;
+            /* Transición suave */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Capa de carga -->
+    <div class="loading-overlay">
+        <i class="bi bi-palette"></i> <!-- Icono de la paleta -->
+        <div class="loading-bar">
+            <div class="loading-progress"></div> <!-- Barra de carga -->
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand" data-bs-theme="dark">
+        <div class="container-fluid">
+            <!-- Logo en el navbar -->
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'img/logo2.png' %}" alt="Logo" width="50" height="50"
+                    class="d-inline-block align-top" />
+            </a>
+            <!-- Fin del logo -->
+            <a class="navbar-brand" href="{% url 'index' %}">Ground-Zero</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'catalogo' %}">Catalogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Artistas' %}">Artistas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Iniciar Sesion
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% if user.is_authenticated %}
+                                <li>
+                                    <a class="dropdown-item"  href="#">{{user.username}}</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"  href="{% url 'logout'%}">cerrar session</a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a class="dropdown-item"  href="{% url 'login'%}">Iniciar session</a>
+                                </li>
+
+                            {% endif %}
+
+                            <li><a class="dropdown-item" href="{% url 'registro' %}">Registrate</a></li>
+                           
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                    </li>
+                </ul>
+                <form class="d-flex" role="buscar">
+                    <input class="form-control me-2" type="search" placeholder="buscar" aria-label="Buscar">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+                <div class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="cartDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-cart-fill"></i>
+                        <span class="badge bg-danger" id="cart-count">0</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown" id="cart-dropdown-menu">
+                        <li>
+                            <h6 class="dropdown-header">Carrito de Compras</h6>
+                        </li>
+                        <li>
+                            <div id="cart-items"></div>
+                        </li>
+                        <li>
+                            <div class="dropdown-divider"></div>
+                        </li>
+                        <li>
+                            <p class="dropdown-item">Total: <span id="cart-total">0</span></p>
+                        </li>
+                        <li><button class="dropdown-item" id="checkout-button">Finalizar Compra</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+
+    <script src='{% static "js/clima.js" %}' type="text/javascript"></script>
+
+    <script src='{% static "js/cart.js" %}' type="text/javascript"></script>
+
+    <script src='{% static "js/filtros.js" %}' type="text/javascript"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    </script>
+
+    <script>
+        // Elimina la capa de carga cuando el contenido esté completamente cargado
+        window.addEventListener('load', function () {
+            const loadingOverlay = document.querySelector('.loading-overlay');
+            loadingOverlay.style.transition = 'opacity 20s'; // Animación más lenta
+            loadingOverlay.style.opacity = '0'; // Oculta la capa de carga
+            setTimeout(function () {
+                loadingOverlay.style.display = 'none'; // Elimina la capa de carga del DOM
+            }, 1000); // Tiempo de espera de 1 segundo antes de eliminar la capa de carga
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const enviarBtn = document.getElementById('enviarBtn');
+            const inputNombre = document.getElementById('inputNombre');
+            const inputAddress = document.getElementById('inputAddress');
+            const inputAddress2 = document.getElementById('inputAddress2');
+            const inputMessage = document.getElementById('inputMessage');
+            const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+
+            // Agregar evento input para validar el campo de teléfono
+            inputAddress2.addEventListener('input', function (event) {
+                const telefono = event.target.value.trim();
+                // Eliminar caracteres que no sean números
+                event.target.value = telefono.replace(/\D/g, '');
+            });
+
+            enviarBtn.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                const nombre = inputNombre.value.trim();
+                const email = inputAddress.value.trim();
+                const telefono = inputAddress2.value.trim();
+                const message = inputMessage.value.trim();
+
+                let nombreError = document.getElementById('nombre-error');
+                let emailError = document.getElementById('email-error');
+                let telefonoError = document.getElementById('telefono-error');
+                let messageError = document.getElementById('message-error');
+                let hasError = false;
+
+                // Validaciones para el nombre
+                if (!nombre) {
+                    nombreError.innerText = 'El campo es obligatorio';
+                    nombreError.classList.add('text-danger');
+                    inputNombre.classList.remove('is-valid');
+                    inputNombre.classList.add('is-invalid');
+                    hasError = true;
+                } else {
+                    nombreError.innerText = '';
+                    nombreError.classList.remove('text-danger');
+                    inputNombre.classList.remove('is-invalid');
+                    inputNombre.classList.add('is-valid');
+                }
+
+                // Validaciones para el correo electrónico
+                if (!email) {
+                    emailError.innerText = 'El campo es obligatorio';
+                    emailError.classList.add('text-danger');
+                    inputAddress.classList.remove('is-valid');
+                    inputAddress.classList.add('is-invalid');
+                    hasError = true;
+                } else if (!email.includes('@')) {
+                    emailError.innerText = 'El correo electrónico debe contener el símbolo @';
+                    emailError.classList.add('text-danger');
+                    inputAddress.classList.remove('is-valid');
+                    inputAddress.classList.add('is-invalid');
+                    hasError = true;
+                } else {
+                    emailError.innerText = '';
+                    emailError.classList.remove('text-danger');
+                    inputAddress.classList.remove('is-invalid');
+                    inputAddress.classList.add('is-valid');
+                }
+
+                // Validaciones para el número de teléfono
+                if (!telefono) {
+                    telefonoError.innerText = 'El campo es obligatorio';
+                    telefonoError.classList.add('text-danger');
+                    inputAddress2.classList.remove('is-valid');
+                    inputAddress2.classList.add('is-invalid');
+                    hasError = true;
+                } else if (!telefono.match(/^\d{9}$/)) {
+                    telefonoError.innerText = 'El número de teléfono debe tener 9 dígitos';
+                    telefonoError.classList.add('text-danger');
+                    inputAddress2.classList.remove('is-valid');
+                    inputAddress2.classList.add('is-invalid');
+                    hasError = true;
+                } else if (telefono.charAt(0) !== '9') {
+                    telefonoError.innerText = 'El número de teléfono debe empezar con 9';
+                    telefonoError.classList.add('text-danger');
+                    inputAddress2.classList.remove('is-valid');
+                    inputAddress2.classList.add('is-invalid');
+                    hasError = true;
+                } else {
+                    telefonoError.innerText = '';
+                    telefonoError.classList.remove('text-danger');
+                    inputAddress2.classList.remove('is-invalid');
+                    inputAddress2.classList.add('is-valid');
+                }
+
+                // Validaciones para el mensaje
+                if (!message) {
+                    messageError.innerText = 'El campo es obligatorio';
+                    messageError.classList.add('text-danger');
+                    inputMessage.classList.remove('is-valid');
+                    inputMessage.classList.add('is-invalid');
+                    hasError = true;
+                } else {
+                    messageError.innerText = '';
+                    messageError.classList.remove('text-danger');
+                    inputMessage.classList.remove('is-invalid');
+                    inputMessage.classList.add('is-valid');
+                }
+
+                if (!hasError) {
+                    modal.show();
+                }
+            });
+
+            confirmarBtn.addEventListener('click', function (event) {
+                // Aquí se puede agregar la lógica para enviar el formulario
+                //   mensaje de confirmación al usuario
+                alert('El formulario se ha enviado correctamente.');
+                // Limpia el formulario
+                document.getElementById("myForm").reset();
+                // Reinicia el estado de validación de los campos
+                inputNombre.classList.remove('is-valid', 'is-invalid');
+                inputAddress.classList.remove('is-valid', 'is-invalid');
+                inputAddress2.classList.remove('is-valid', 'is-invalid');
+                inputMessage.classList.remove('is-valid', 'is-invalid');
+                // Elimina los mensajes de error
+                document.getElementById('nombre-error').innerText = '';
+                document.getElementById('email-error').innerText = '';
+                document.getElementById('telefono-error').innerText = '';
+                document.getElementById('message-error').innerText = '';
+                // Cierra el modal
+                modal.hide();
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

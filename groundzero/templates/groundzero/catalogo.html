@@ -1,0 +1,35 @@
+{% extends 'groundzero/base.html' %}
+
+{% block title %}Catalogo{% endblock %}
+
+{% block content %}
+
+{% load static %}
+{% load humanize %}
+
+<!--cards catalogo o productos-->
+<div class="mb-3">
+  <label for="price-filter" class="form-label">Filtrar por precio:</label>
+  <select id="price-filter" class="form-select">
+    <option value="0">Todos</option>
+    <option value="1">Precio mayor o igual a $100.000</option>
+    <option value="2">Precio menor a $100.000</option>
+  </select>
+</div>
+  {% for p in productos %}
+  <div class="card-group" >
+    <div class="card">
+      {% if p.imagen %}
+      <img class="card-img-top" src="{{ p.imagen.url}}" alt="VISTA NOTURNA DE ISTAMBUL,TURQUIA">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{p.nombre | capfirst }}</h5>
+        <p class="card-text">{{p.tecnica}}</p>
+        <p class="card-price">Precio:$ {{p.precio | intcomma}}</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <button class="btn btn-primary add-to-cart">
+          <i class="bi bi-cart"></i> Agregar al carrito
+        </button>
+      </div>
+  {% endfor %}
+{% endblock %}

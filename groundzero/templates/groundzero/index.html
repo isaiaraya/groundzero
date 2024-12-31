@@ -1,0 +1,66 @@
+{% extends 'groundzero/base.html' %}
+
+{% block title %}index{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<section class="carousel-section">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'img/Yan-Pei-Ming-Chien-de-nuit-2015-Oil-on-canvas-73-x-92-cm-2874-x-3622-in-Courtesy-Yan-Pei-Ming.jpg' %}"
+                    class="d-block w-100" alt="primera foto">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>Aggressive Beauty</h2>
+                    <p>Yan Pei-Ming.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/la noche estrellada.jpg' %}" class="d-block w-100" alt="segunda foto">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>La noche estrellada</h2>
+                    <p>Vincent Van Gogh</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/elgrito.jpg' %}" class="d-block w-100" alt="tercera foto">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>El grito</h2>
+                    <p>Edvard Munch.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+<div style="background-color: bisque;">
+    <select name="ciudad" id="city" style="margin: 2cap;">
+        <option value="viña del mar">Viña del mar</option>
+        <option value="valparaiso">Valparaiso</option>
+        <option value="santiago de chile">Santiago</option>
+    </select>
+    <button id="btnclima"> el clima es </button>
+</div>
+<div class="card-fluid" style="background-color: rgb(255, 191, 113); justify-content: center;">
+    <div id="resultado"></div>
+</div>
+
+{% endblock %}

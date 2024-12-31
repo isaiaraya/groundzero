@@ -1,0 +1,279 @@
+body {
+    font-family: 'PT Serif', serif; /* Cambia la fuente del cuerpo del documento */
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    font-family: 'PT Serif', serif; /* Cambia la fuente de la barra de navegación */
+}
+
+/* Agrega más reglas CSS según sea necesario para cambiar la fuente de otros elementos */
+
+
+
+/* Agrega más reglas CSS según sea necesario para cambiar la fuente de otros elementos */
+
+
+
+/* Agrega más reglas CSS según sea necesario para cambiar la fuente de otros elementos */
+
+
+
+
+
+.navbar {
+    background-color: #000000 !important; /* !important asegura que este estilo tenga prioridad */
+    padding: 20px; /* Ajusta el espaciado según sea necesario */
+}
+
+.navbar-brand {
+    padding: 0.5rem 1rem;
+}
+
+.navbar-nav {
+    flex-direction: row;
+}
+
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+}
+
+.carousel-section {
+    padding-top: 0; /* Ajusta el espaciado según sea necesario */
+    text-align: center;
+    max-width: 1700px; /* Ancho máximo del carousel */
+    
+}
+
+.carousel-item img {
+    max-width: 100%; /* Limita el ancho de las imágenes al 100% del contenedor */
+    max-height: 750px; /* Altura máxima de las imágenes */
+    object-fit: cover; /* Esto hace que la imagen se ajuste al tamaño del contenedor manteniendo su relación de aspecto */
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.carousel-caption h2,
+.carousel-caption p {
+    color: #fff;
+    margin: 0;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    height: 100%;
+}
+
+.carousel-control-prev-icon:before,
+.carousel-control-next-icon:before {
+    content: none;
+}
+
+
+.card-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espaciado entre las cards */
+}     
+
+.card {
+    flex: 1 1 300px;
+    max-width: 800px; 
+}
+
+.filter-container {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  #price-filter {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+
+.card-img-top {
+    width: 100%;
+    height: 500px;
+    object-fit: cover; /* Ajusta la imagen al tamaño de la card manteniendo la relación de aspecto */
+}
+
+.card-body,
+.card-footer {
+    background-color: #eeebef; /* Color de fondo del cuerpo y el pie de las cards */
+}
+
+
+.container {
+    max-width: 1200px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centrar el contenedor en la pantalla */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 1; /* Hace que las columnas ocupen el mismo espacio */
+}
+
+.bg {
+    background-color: #f0f0f0; /* Color de fondo para la columna de imagen */
+}
+
+.bg-white {
+    background-color: #ffffff; /* Color de fondo para el formulario */
+}
+
+.align-items-stretch {
+    align-items: stretch; /* Alinea los elementos de la fila para que ocupen la altura altura */
+}
+
+.rounded {
+    border-radius: 10px; /* Bordes redondeados para el contenedor */
+}
+
+.shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para el contenedor */
+}
+
+.form-label {
+    text-align: left; /* Alinea las etiquetas a la izquierda */
+}
+
+.form-control {
+    width: 100%; /* Ancho completo del campo de entrada */
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.d-grid {
+    text-align: center; 
+}
+
+.my-3 {
+    text-align: center; 
+}
+
+.my-3 a {
+    text-decoration: none; 
+}
+
+#btn-register {
+    width: 100%; /* Ancho completo del botón de registro */
+}
+
+.container-fluid {
+    box-shadow:0 4px 6px rgba(0, 0, 0, 0.1); ;
+    width: 50%;
+    margin: 0 auto; /* Centra el formulario en la pantalla */
+}
+
+#myForm {
+    max-width: 600px; /* Ancho máximo del formulario */
+    margin: 0 auto; /* Centra el formulario en la pantalla */
+    padding: 20px; /* Espaciado interno del formulario */
+}
+
+.form-group {
+    margin: 0;
+    margin-bottom: 10px; /* Espaciado entre los grupos de campos */
+}
+
+textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+    min-height: 50px; /* Altura mínima */
+    max-height: 200px; /* Altura máxima */
+    width: 100%; /* Anchura del textarea al 100% del contenedor */
+    overflow-y: auto; /* Agrega barras de desplazamiento vertical si el contenido excede la altura máxima */
+}
+
+.form-check-label {
+    margin-left: 5px; /* Espaciado a la izquierda del checkbox */
+}
+
+.btn-primary {
+    width: 100%; /* Ancho completo del botón */
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        width: 80%; /* Ancho del formulario en pantallas más pequeñas */
+    }
+}
+
+
+
+@media screen and (max-width: 992px) {
+    .bg {
+        display: none; /* Oculta la columna de imagen en pantallas pequeñas */
+    }
+
+    .col {
+        flex: 100%; /* Hace que las columnas ocupen todo el ancho en pantallas pequeñas */
+    }
+}
+
+
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 0.5rem 0;
+    }
+}
+
+
+
+
+/* static/styles/style.css */
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #343a40;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.alert {
+    margin-top: 20px;
+}
+

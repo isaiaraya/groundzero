@@ -1,0 +1,59 @@
+{% extends 'groundzero/base.html' %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="container-fluid" style="width: 50%;">
+    <form id="myForm">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputNombre">Nombre</label>
+                <input type="text" class="form-control" id="inputNombre" placeholder="Nombre">
+                <div id="nombre-error" class="error"></div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputAddress">Email</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Email">
+            <div id="email-error" class="error"></div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputAddress2">Numero telefono</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Número de teléfono">
+            <div id="telefono-error" class="error"></div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputMessage">Mensaje</label>
+                <textarea class="form-control" id="inputMessage" rows="3" placeholder="Mensaje"></textarea>
+                <div id="message-error" class="error"></div>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-primary" id="enviarBtn">Enviar</button>
+    </form>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmación de Envío</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas enviar el formulario?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="confirmarBtn">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
